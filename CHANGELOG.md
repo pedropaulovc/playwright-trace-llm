@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-06-02
+
+### Changed
+
+- Promoted to a stable 1.0.0 release. No code changes from 0.1.2 — verified
+  end to end against a real-world production trace (a failing parallel-run
+  trace: 49 actions, 2 errors, 28 DOM snapshots, 99 network requests) with the
+  test name, FAILED status, error diffs, hierarchical timeline, and assets all
+  exported correctly.
+
 ## [0.1.2] - 2026-06-02
 
 ### Changed
@@ -38,7 +48,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Extracted from the Playwright `feat/export-trace` fork; runtime dependency is
   `yauzl` only.
 
-[Unreleased]: https://github.com/pedropaulovc/playwright-trace-llm/compare/v0.1.2...HEAD
+[Unreleased]: https://github.com/pedropaulovc/playwright-trace-llm/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/pedropaulovc/playwright-trace-llm/compare/v0.1.2...v1.0.0
 [0.1.2]: https://github.com/pedropaulovc/playwright-trace-llm/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/pedropaulovc/playwright-trace-llm/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/pedropaulovc/playwright-trace-llm/releases/tag/v0.1.0
