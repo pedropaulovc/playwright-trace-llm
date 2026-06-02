@@ -248,6 +248,17 @@ test.describe('trace exporter', () => {
     expect(network).toContain('.css');
     expect(network).toContain('| GET |');
     expect(network).toContain('| 200 |');
+
+    // Regression: URLs are shown in full (never truncated), and unknown
+    // response sizes render as '-' rather than the raw HAR sentinel '-1B'.
+    const rows = network.split('\n').filter(line => /^\| \d+ \|/.test(line));
+    expect(rows.length).toBeGreaterThan(0);
+    for (const row of rows) {
+      const urlCell = row.split('|')[3];
+      expect(urlCell).not.toContain('...');
+    }
+    expect(network).not.toContain('-1B');
+    expect(network).toContain('https://playwright.dev/img/logos/accessibilityinsights.png');
   });
 
   test('should export snapshots as HTML files', async ({}, testInfo) => {

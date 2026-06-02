@@ -9,13 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.0.0] - 2026-06-02
 
+### Fixed
+
+- Network log no longer truncates request URLs — full URLs are shown so they
+  stay useful for LLMs and copy/paste. Unknown response sizes (HAR `-1`
+  sentinel) now render as `-` instead of `-1B`.
+
 ### Changed
 
-- Promoted to a stable 1.0.0 release. No code changes from 0.1.2 — verified
-  end to end against a real-world production trace (a failing parallel-run
-  trace: 49 actions, 2 errors, 28 DOM snapshots, 99 network requests) with the
-  test name, FAILED status, error diffs, hierarchical timeline, and assets all
-  exported correctly.
+- Promoted to a stable 1.0.0 release. Verified end to end against a real-world
+  production trace (a failing parallel-run trace: 49 actions, 2 errors, 28 DOM
+  snapshots, 99 network requests) with the test name, FAILED status, error
+  diffs, hierarchical timeline, and assets all exported correctly.
 
 ## [0.1.2] - 2026-06-02
 
