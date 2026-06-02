@@ -1,6 +1,6 @@
 {
   "name": "playwright-trace-llm",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Export Playwright trace ZIPs to LLM-friendly Markdown and HTML for AI-assisted debugging.",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",

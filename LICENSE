@@ -186,6 +186,10 @@
       same "printed page" as the copyright notice for easier
       identification within third-party archives.
 
+   Copyright (c) 2026 Pedro Paulo Vezza Campos.
+
+   Portions vendored from Playwright (src/zipFile.ts, src/stringUtils.ts,
+   src/snapshot.ts):
    Portions Copyright (c) Microsoft Corporation.
    Portions Copyright 2017 Google Inc.
 

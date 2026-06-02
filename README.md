@@ -55,7 +55,13 @@ await exportTraceToMarkdown('path/to/trace.zip', { outputDir: './trace-export' }
 
 ## How it relates to Playwright
 
-The export logic is extracted from a [fork of Playwright](https://github.com/pedropaulovc/playwright) (the `feat/export-trace` branch), packaged to run standalone without a full Playwright install. It reads `.trace` and `.network` files from the ZIP directly — its only runtime dependency is `yauzl`. See [NOTICE](NOTICE) for attribution.
+The export logic (`traceExporter.ts`) is original work, developed as the
+`export-trace` feature on a [Playwright fork](https://github.com/pedropaulovc/playwright)
+and packaged here to run standalone without a full Playwright install. Only a
+few small helpers are vendored from Playwright — a ZIP reader, HTML-escaping
+utilities, and trace snapshot type definitions. It reads `.trace` and `.network`
+files from the ZIP directly; its only runtime dependency is `yauzl`. See
+[NOTICE](NOTICE) for attribution.
 
 ## Versioning
 

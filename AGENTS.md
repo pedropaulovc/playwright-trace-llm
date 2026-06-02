@@ -33,11 +33,13 @@ CHANGELOG.md                    # Keep a Changelog format
 
 ## Relationship to the Playwright Fork
 
-`src/traceExporter.ts`, `src/zipFile.ts`, `src/stringUtils.ts`, and
-`src/snapshot.ts` are vendored from
+`src/traceExporter.ts` is original work (Copyright © 2026 Pedro Paulo Vezza
+Campos), developed as the `export-trace` feature on
 [pedropaulovc/playwright `feat/export-trace`](https://github.com/pedropaulovc/playwright/tree/feat/export-trace).
-When the upstream feature changes, re-copy those files and re-apply the import
-rewrites:
+`src/zipFile.ts`, `src/stringUtils.ts`, and `src/snapshot.ts` are small helpers
+vendored from Playwright (Copyright © Microsoft / Google). When the fork's
+feature changes, re-copy `traceExporter.ts` (and the helpers if they changed)
+and re-apply the import rewrites:
 
 - `../../utils/zipFile` → `./zipFile` (and point `zipFile.ts` at the `yauzl` npm package)
 - `../../../utils/isomorphic/stringUtils` → `./stringUtils`

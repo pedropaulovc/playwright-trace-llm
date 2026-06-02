@@ -1,13 +1,20 @@
 playwright-trace-llm
 
-This product includes software derived from Playwright
-(https://github.com/microsoft/playwright), licensed under the Apache
-License, Version 2.0.
+Copyright (c) 2026 Pedro Paulo Vezza Campos.
+
+The trace export logic — src/traceExporter.ts, src/cli.ts, and src/index.ts —
+is original work, Copyright (c) 2026 Pedro Paulo Vezza Campos, licensed under
+the Apache License, Version 2.0.
+
+This product also includes software vendored from Playwright
+(https://github.com/microsoft/playwright), licensed under the Apache License,
+Version 2.0:
+
+   src/zipFile.ts      ZIP reader (thin wrapper over the yauzl package)
+   src/stringUtils.ts  HTML escaping helpers
+   src/snapshot.ts     trace snapshot type definitions
 
    Portions Copyright (c) Microsoft Corporation.
    Portions Copyright 2017 Google Inc.
 
-The trace export logic in src/traceExporter.ts and the vendored support
-modules (src/zipFile.ts, src/stringUtils.ts, src/snapshot.ts) originate
-from the Playwright codebase and remain under the Apache License, Version 2.0.
 See LICENSE for the full license text.

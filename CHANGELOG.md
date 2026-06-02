@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-06-02
+
+### Changed
+
+- Corrected copyright attribution: `traceExporter.ts`, `cli.ts`, and `index.ts`
+  are original work (Copyright © 2026 Pedro Paulo Vezza Campos). Only the
+  vendored helpers (`zipFile.ts`, `stringUtils.ts`, `snapshot.ts`) carry the
+  Playwright (Microsoft/Google) attribution. Updated NOTICE, LICENSE, README,
+  and source headers accordingly.
+
 ## [0.1.1] - 2026-06-02
 
 ### Fixed
@@ -28,6 +38,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Extracted from the Playwright `feat/export-trace` fork; runtime dependency is
   `yauzl` only.
 
-[Unreleased]: https://github.com/pedropaulovc/playwright-trace-llm/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/pedropaulovc/playwright-trace-llm/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/pedropaulovc/playwright-trace-llm/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/pedropaulovc/playwright-trace-llm/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/pedropaulovc/playwright-trace-llm/releases/tag/v0.1.0
