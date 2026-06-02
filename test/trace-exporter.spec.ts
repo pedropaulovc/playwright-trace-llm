@@ -239,7 +239,7 @@ test.describe('trace exporter', () => {
 
     const network = fs.readFileSync(path.join(outputDir, 'network.md'), 'utf-8');
     expect(network).toContain('# Network Log');
-    expect(network).toContain('Total requests: 18');
+    expect(network).toContain('Total requests: 19');
     expect(network).toContain('| # | Method | URL | Status | Size |');
     // Check specific requests
     expect(network).toContain('https://playwright.dev/');
@@ -248,6 +248,23 @@ test.describe('trace exporter', () => {
     expect(network).toContain('.css');
     expect(network).toContain('| GET |');
     expect(network).toContain('| 200 |');
+
+    // Regression: long request URLs are shown in full (never truncated), and
+    // unknown response sizes (HAR's -1 sentinel) render as '-' not '-1B'.
+    // The fixture includes a synthetic 119-char URL with size -1 for this.
+    const longUrl = 'https://playwright.dev/_next/static/chunks/intentionally-long-url-for-truncation-regression-testing-1234567890abcdef.js';
+    expect(longUrl.length).toBeGreaterThan(60);
+    expect(network).toContain(longUrl);
+
+    const rows = network.split('\n').filter(line => /^\| \d+ \|/.test(line));
+    expect(rows.length).toBeGreaterThan(0);
+    for (const row of rows)
+      expect(row.split('|')[3]).not.toContain('...');
+
+    expect(network).not.toContain('-1B');
+    const longRow = rows.find(row => row.includes(longUrl));
+    expect(longRow).toBeTruthy();
+    expect(longRow!.split('|')[5].trim()).toBe('-');
   });
 
   test('should export snapshots as HTML files', async ({}, testInfo) => {

@@ -1110,9 +1110,9 @@ function generateNetworkMarkdown(resources: TraceResource[]): string {
 
   for (let i = 0; i < resources.length; i++) {
     const resource = resources[i];
-    const url = truncateString(resource.request.url, 60);
+    const url = resource.request.url.replace(/\|/g, '\\|');
     const status = resource.response.status;
-    const size = formatSize(resource.response.content?.size || 0);
+    const size = formatSize(resource.response.content?.size);
 
     md += `| ${i + 1} | ${resource.request.method} | ${url} | ${status} | ${size} |\n`;
 
@@ -1124,7 +1124,7 @@ function generateNetworkMarkdown(resources: TraceResource[]): string {
     md += `\n## Failed Requests\n\n`;
 
     for (const resource of failedRequests) {
-      md += `### ${resource.request.method} ${truncateString(resource.request.url, 80)} - ${resource.response.status}\n\n`;
+      md += `### ${resource.request.method} ${resource.request.url} - ${resource.response.status}\n\n`;
 
       if (resource.response._failureText)
         md += `**Failure:** ${resource.response._failureText}\n\n`;
@@ -1659,7 +1659,9 @@ function formatResult(result: any): string {
   return truncateString(str, 100);
 }
 
-function formatSize(bytes: number): string {
+function formatSize(bytes: number | undefined): string {
+  if (bytes === undefined || bytes < 0)
+    return '-';
   if (bytes < 1024)
     return `${bytes}B`;
   if (bytes < 1024 * 1024)
