@@ -1,0 +1,39 @@
+name: Auto-tag
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  tag:
+    runs-on: ubuntu-slim
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Check and create version tag
+        id: tag
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          TAG="v${VERSION}"
+          if gh api repos/${{ github.repository }}/git/refs/tags/$TAG >/dev/null 2>&1; then
+            echo "Tag $TAG already exists, skipping"
+            echo "created=false" >> $GITHUB_OUTPUT
+          else
+            echo "Creating tag $TAG"
+            SHA=$(git rev-parse HEAD)
+            gh api repos/${{ github.repository }}/git/refs -f ref="refs/tags/$TAG" -f sha="$SHA"
+            echo "created=true" >> $GITHUB_OUTPUT
+            echo "tag=$TAG" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Trigger publish workflow
+        if: steps.tag.outputs.created == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run publish.yml --ref ${{ steps.tag.outputs.tag }}

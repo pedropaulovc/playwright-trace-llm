@@ -1,0 +1,45 @@
+{
+  "name": "playwright-trace-llm",
+  "version": "0.1.0",
+  "description": "Export Playwright trace ZIPs to LLM-friendly Markdown and HTML for AI-assisted debugging.",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "bin": {
+    "playwright-trace-llm": "./lib/cli.js"
+  },
+  "files": [
+    "lib",
+    "NOTICE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "playwright test",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "playwright",
+    "trace",
+    "trace-viewer",
+    "markdown",
+    "llm",
+    "ai",
+    "debugging",
+    "export"
+  ],
+  "author": "Pedro Paulo Vezza Campos",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pedropaulovc/playwright-trace-llm.git"
+  },
+  "dependencies": {
+    "yauzl": "^3.2.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.50.0",
+    "@types/node": "^22.0.0",
+    "@types/yauzl": "^2.10.3",
+    "typescript": "^5.7.0"
+  }
+}

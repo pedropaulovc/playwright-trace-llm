@@ -1,0 +1,13 @@
+playwright-trace-llm
+
+This product includes software derived from Playwright
+(https://github.com/microsoft/playwright), licensed under the Apache
+License, Version 2.0.
+
+   Portions Copyright (c) Microsoft Corporation.
+   Portions Copyright 2017 Google Inc.
+
+The trace export logic in src/traceExporter.ts and the vendored support
+modules (src/zipFile.ts, src/stringUtils.ts, src/snapshot.ts) originate
+from the Playwright codebase and remain under the Apache License, Version 2.0.
+See LICENSE for the full license text.
